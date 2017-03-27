@@ -1,0 +1,170 @@
+Public Class Form1
+    Dim StudentDetails(50, 7) As String
+    Dim Grade(50, 7) As String
+    Dim Subjects(50, 7) As String
+    Dim Ctr As Integer
+    Dim Ctr1 As Integer
+    Dim number_of_students As Integer
+    Dim SearchID As Integer
+    Dim U As Integer
+    Dim Alisscore As Integer
+    Dim totalalis As Integer
+    Private Sub AddButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddButton.Click
+        number_of_students = InputBox("Enter no of students")
+
+        For Ctr = 0 To number_of_students
+
+
+            StudentDetails(Ctr, 0) = InputBox("Enter Student ID")
+            StudentDetails(Ctr, 1) = InputBox("Enter First Name")
+            StudentDetails(Ctr, 2) = InputBox("Enter Surname")
+            StudentDetails(Ctr, 3) = InputBox("Enter Address 1")
+            StudentDetails(Ctr, 4) = InputBox("Enter Address 2")
+            StudentDetails(Ctr, 5) = InputBox("Enter Postcode")
+            StudentDetails(Ctr, 6) = InputBox("Enter Number of subjects ")
+            Subjects(Ctr, 0) = StudentDetails(Ctr, 0)
+            Grade(Ctr, 0) = StudentDetails(Ctr, 0)
+
+
+            For U = 1 To StudentDetails(Ctr, 6)
+                Subjects(Ctr, U) = InputBox("Enter Subject")
+                Grade(Ctr, U) = InputBox("Enter Grade" & " " & Subjects(Ctr, U))
+
+
+                If Grade(Ctr, U) = "A*" Then
+
+                    Alisscore = 9
+                Else
+
+                    If Grade(Ctr, U) = "B" Then
+
+                        Alisscore = 8
+                    Else
+                        If Grade(Ctr, U) = "C" Then
+
+                            Alisscore = 7
+                        Else
+
+                            If Grade(Ctr, U) = "D" Then
+
+                                Alisscore = 6
+
+                                If Grade(Ctr, U) = "E" Then
+
+                                    Alisscore = 6
+
+                                    If Grade(Ctr, U) = "F" Then
+
+                                        Score.Text = 5
+
+                                        If Grade(Ctr, U) = "G" Then
+
+                                            Score.Text = 4
+
+
+
+
+
+                                        End If
+                                    End If
+                                End If
+                            End If
+
+                        End If
+                    End If
+                End If
+
+                totalalis = totalalis + Alisscore
+
+            Next
+            Score.Text = totalalis / Student(Ctr, 6)
+        Next
+
+    
+
+    End Sub
+
+    Private Sub SearchButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchButton.Click
+        Dim search As Boolean
+        Dim text As String
+        search = True
+        Ctr = 0
+        SearchID = InputBox("Enter Student ID")
+        Do While search
+            If SearchID = StudentDetails(Ctr, 0) Then
+                TextBox1.Text = StudentDetails(Ctr, 0)
+                TextBox2.Text = StudentDetails(Ctr, 1)
+                TextBox3.Text = StudentDetails(Ctr, 2)
+                TextBox4.Text = StudentDetails(Ctr, 3)
+                TextBox5.Text = StudentDetails(Ctr, 4)
+                TextBox6.Text = StudentDetails(Ctr, 5)
+                Score.Text = StudentDetails(Ctr, 6)
+                For U = 1 To StudentDetails(Ctr, 6)
+                    text = Subjects(Ctr, U) + " " + Grade(Ctr, U)
+                    ListBox1.Items.Add(text)
+                Next
+                search = False
+            Else
+                search = True
+                Ctr = Ctr + 1
+            End If
+
+        Loop
+        SearchID = StudentDetails(Ctr, 0)
+    End Sub
+
+    Private Sub BtnPrevious_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrevious.Click
+        Dim search As Boolean
+        Dim text As String
+        search = True
+        If Ctr >= 0 And Ctr <= number_of_students Then
+
+            TextBox1.Text = StudentDetails(Ctr, 0)
+            TextBox2.Text = StudentDetails(Ctr, 1)
+            TextBox3.Text = StudentDetails(Ctr, 2)
+            TextBox4.Text = StudentDetails(Ctr, 3)
+            TextBox5.Text = StudentDetails(Ctr, 4)
+            TextBox6.Text = StudentDetails(Ctr, 5)
+            Score.Text = totalalis / StudentDetails(Ctr, 6)
+            For U = 1 To StudentDetails(Ctr, 6)
+                text = Subjects(Ctr, U) + " " + Grade(Ctr, U)
+                ListBox1.Items.Add(text)
+            Next
+
+        End If
+        Ctr = Ctr - 1
+    End Sub
+
+    Private Sub BtnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnNext.Click
+        Dim search As Boolean
+        Dim text As String
+        search = True
+        If Ctr >= 0 And Ctr <= number_of_students Then
+        End If
+
+        TextBox1.Text = StudentDetails(Ctr, 0)
+        TextBox2.Text = StudentDetails(Ctr, 1)
+        TextBox3.Text = StudentDetails(Ctr, 2)
+        TextBox4.Text = StudentDetails(Ctr, 3)
+        TextBox5.Text = StudentDetails(Ctr, 4)
+        TextBox6.Text = StudentDetails(Ctr, 5)
+        Score.Text = totalalis / StudentDetails(Ctr, 6)
+        For U = 1 To StudentDetails(Ctr, 6)
+            text = Subjects(Ctr, U) + " " + Grade(Ctr, U)
+            ListBox1.Items.Add(text)
+        Next
+        search = False
+
+        Ctr = Ctr + 1
+
+
+    End Sub
+
+    Private Sub Score_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Score.TextChanged
+
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.SelectedIndexChanged
+
+    End Sub
+End Class
